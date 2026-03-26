@@ -1,5 +1,8 @@
 from modules.encryption.rsa import generate_keys, encrypt, decrypt
 from modules.encryption.caesar_cipher import caesar_encrypt,caesar_decrypt
+from modules.password_cracker.bruteforce import brute_force
+from modules.password_cracker.dictionary_attack import dictionary_attack
+from modules.password_cracker.analyzer import pass_strength, estimated_time
 
 while True:
     print("\n--- CyberLab Toolkit ---")
@@ -7,7 +10,12 @@ while True:
     print("2 Caesar Decrypt")
     print("3 RSA Encrypt")
     print("4 RSA Decrypt")
-    print("5 Exit")
+    print("--- Password Tools ---")
+    print("5 Password Strength Check")
+    print("6 Password Crack (Brute Force)")
+    print("7 Dictionary Attack")
+    print("8 Estimated Crack Time")
+    print("9 Exit")
 
     try:
         choice = int(input("Choose: "))
@@ -15,11 +23,11 @@ while True:
         print("Enter a valid number")
         continue
 
-    if choice == 5:
+    if choice == 9:
         print("Exiting...")
         break
 
-    if choice not in range(1, 6):
+    if choice not in range(1, 10):
         print("Invalid input")
         continue
 
@@ -57,6 +65,18 @@ while True:
             cipher = list(map(int, input("Enter cipher (space separated): ").split()))
             plain = decrypt(cipher, private_key)
             print("Decrypted:", plain)
+        
+    elif choice == 5:
+        pass_strength()
+    elif choice == 6:
+        brute_force()
+    elif choice == 7:
+        dictionary_attack()
+    elif choice == 8:
+        estimated_time()
+
+
+    
 
 
 
